@@ -1,0 +1,26 @@
+{
+    "IsDebug": true,
+
+    "DiscordBotToken": "",
+    "IsDiscordBotOn": true,
+
+    "IsTeamRoleManagerOn": true,
+
+    "TwitterBotKey": "",
+    "TwitterBotSecret": "",
+    "TwitterBotToken": "",
+    "TwitterBotTokenSecret": "",
+    "TwitterIdsToFollow": "2839430431,4840958511,783281708137324549,977650294321549312",
+    "KeepOriginalTweetOnly": true,
+    "RemoveTweetWithTags": true,
+    "DiscordChannelIdToDeliverTweets": "000000011168022222",
+    "TwitterStreamRestartIntervalInMinutes": "1", 
+    "IsTwitterRepostOn": false,
+
+    "DiscordMessagePruneIntervalInMinutes": "1",
+    "MessagePruneSettings": "[{channelId: '000000030768021111', commandTag: 'save', messageAgeToPruneInMinutes: 2}]",
+
+    "GoogleApiPrivateKeyPath": "../hnPG-000000021696.json",
+    "CalendarPostIntervalInMinutes": "0",
+    "CalendarPostSettings": "[{channelId: '000000030768021111', messageId: '000000054636341111', calendarId: 'aaaaaccbdddd8hersehfobe5e0@group.calendar.google.com', numberOfEventsToPost: 12}]"
+}
