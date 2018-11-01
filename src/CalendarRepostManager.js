@@ -138,10 +138,12 @@ class CalendarRepostManager {
             normalizedStartDate = new Date(event.start.dateTime);
             normalizedEndDate = new Date(event.end.dateTime);
             let timezoneOffset = 360; // for Central Time
-            if(this._isInDaylightSaving()){
+
+            if(this._isInDaylightSaving(normalizedStartDate)){
                 logger.log("In Daylight Saving");
                 timezoneOffset = 300;
             }
+
             // console.log(`tz: ${timezoneOffset}`); - prod 0
             if(!config.IsDebug){ // PROD - quick fix for timezone
                 normalizedStartDate = subMinutes(normalizedStartDate, timezoneOffset);
@@ -162,13 +164,13 @@ class CalendarRepostManager {
             recurringEventId: event.recurringEventId };
     }
 
-    _isInDaylightSaving()
+    _isInDaylightSaving(date)
     {
         var currentDate = new Date();
         var secondSundayOfMarchDate = lastDayOfWeek(new Date(currentDate.getFullYear(), 2, 8, 0, 0, 0), {weekStartsOn: 1});
         var firstSundayOfNovemberDate = lastDayOfWeek(new Date(currentDate.getFullYear(), 10, 1, 0, 0, 0), {weekStartsOn: 1});
 
-        var currentDateTimeValue = currentDate.getTime();
+        var currentDateTimeValue = date.getTime();
         return currentDateTimeValue >= secondSundayOfMarchDate.getTime() && currentDateTimeValue <= firstSundayOfNovemberDate.getTime();
     }
 
@@ -176,6 +178,16 @@ class CalendarRepostManager {
         console.error(error);
         //message.reply("Calendar sync failed").catch(console.error);    
     }
+
+    // _isInDaylightSaving()
+    // {
+    //     var currentDate = new Date();
+    //     var secondSundayOfMarchDate = lastDayOfWeek(new Date(currentDate.getFullYear(), 2, 8, 0, 0, 0), {weekStartsOn: 1});
+    //     var firstSundayOfNovemberDate = lastDayOfWeek(new Date(currentDate.getFullYear(), 10, 1, 0, 0, 0), {weekStartsOn: 1});
+
+    //     var currentDateTimeValue = currentDate.getTime();
+    //     return currentDateTimeValue >= secondSundayOfMarchDate.getTime() && currentDateTimeValue <= firstSundayOfNovemberDate.getTime();
+    // }
 
     // _getCalendarEvents(numberOfEvents) {
     //     let calendar = google.calendar('v3');
